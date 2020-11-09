@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    base conference
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container">
+    <div class="row">
+        {% for conf in confs %}
+              <div class="col-md-4">
+                <h2>{{ conf.title }}</h2>
+                <p>Date: {{ conf.date_start }} - {{ conf.date_end }}</p>
+                <p>Location: {{ conf.location }}</p>
+                <p><a class="btn btn-outline-secondary" href="{% url 'conf_detail_url' cid=conf.id %}" role="button">Details &raquo;</a></p>
+              </div>
+        {% endfor %}
+    </div>
+    </div> 
+{% endblock %}

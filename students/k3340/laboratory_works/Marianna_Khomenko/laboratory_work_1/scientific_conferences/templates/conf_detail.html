@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    conference detail
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+    <h3>SPEAKER DIRECTORY</h3>
+    <br>
+    <div class="row">
+        {% for speech in speeches %}
+              <div class="col-md-8">
+                <h5>{{ speech.name }}</h5>
+                <p>Speaker: {{ speech.speaker }}</p>
+                <p>Data: {{ speech.date }}</p>
+                <p>Time: {{ speech.time_start }} - {{ speech.time_end }}</p>
+              </div>
+        {% endfor %}
+    </div>
+        <hr>
+    </div> 
+
+<br>
+<div class="container">
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.body }} 
+    <br>
+    <button type="submit" class="btn btn-outline-secondary">Send</button>
+</form>
+</div>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h4 class="panel-title">
+                    Comments</h4>
+                <span class="label label-info"></span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% for comment in comments %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1"></div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <div class="mic-info">
+                                        <h6>By: <b>{{ comment.user }}</b> {{ comment.created }}</h6>
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    {{ comment.body }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
